@@ -127,3 +127,8 @@ D:/gusta/GitHub/ProductCatalog/bin/Debug/netcoreapp3.1/Flunt.dll
 /home/gustavo/GitHub/ProductCatalog/obj/Debug/netcoreapp3.1/ProductCatalog.RazorAssemblyInfo.cache
 /home/gustavo/GitHub/ProductCatalog/obj/Debug/netcoreapp3.1/ProductCatalog.RazorAssemblyInfo.cs
 /home/gustavo/GitHub/ProductCatalog/obj/Debug/netcoreapp3.1/ProductCatalog.genruntimeconfig.cache
+/home/gustavo/GitHub/ProductCatalog/bin/Debug/netcoreapp3.1/Microsoft.OpenApi.dll
+/home/gustavo/GitHub/ProductCatalog/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
+/home/gustavo/GitHub/ProductCatalog/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/gustavo/GitHub/ProductCatalog/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/gustavo/GitHub/ProductCatalog/obj/Debug/netcoreapp3.1/ProductCatalog.MvcApplicationPartsAssemblyInfo.cs
