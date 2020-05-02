@@ -19,6 +19,7 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/products")]
         [HttpGet]
+        [ResponseCache(Duration=15)] // Por quinze minutos a response fica 'cacheada'
         public IEnumerable<ListProductViewModel> GetProducts()
         {
             return _productRepository.Get();
