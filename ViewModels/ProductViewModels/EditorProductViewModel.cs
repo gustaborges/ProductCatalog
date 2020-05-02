@@ -1,5 +1,7 @@
 using Flunt.Notifications;
 using Flunt.Validations;
+using ProductCatalog.Repositories;
+using ProductCatalog.Repositories.Contracts;
 
 namespace ProductCatalog.ViewModels.ProductViewModels
 {
@@ -17,12 +19,14 @@ namespace ProductCatalog.ViewModels.ProductViewModels
         public void Validate()
         {
             AddNotifications(new Contract()
-                .IsGreaterOrEqualsThan(Id, 0, "Description", "Id inválido" )
-                .IsNotNull(Description, "Description", "A descrição deve ser fornecida" )
+                .IsGreaterOrEqualsThan(Id, 0, "Id", "Id inválido")
+                .IsGreaterThan(CategoryId, 0, "CategoryId", "CategoryId inválido ou não fornecido")
+                .IsNotNull(Description, "Description", "A descrição deve ser fornecida")
                 .HasMaxLen(Title, 120, "Title", "O título deve conter até 120 caracteres")
                 .HasMinLen(Title, 3, "Title", "O título deve conter pelo menos 3 caracteres")
                 .IsGreaterThan(Price, 0, "Price", "O preço deve ser maior que zero")
-                .IsGreaterThan(Quantity, 0, "Quantity", "A quantidade deve ser maior que zero")                
+                .IsGreaterThan(Quantity, 0, "Quantity", "A quantidade deve ser maior que zero")
+                .IsNotNull(Image, "Image", "A imagem deve ser fornecida")
             );
         }
     }
