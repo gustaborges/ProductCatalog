@@ -10,7 +10,7 @@ namespace ProductCatalog.Repositories.Contracts
         Product Get(int id);
         Product Create(Product product);
         void Update(Product product);
-        bool Delete(ref Product product);
+        void Delete(Product product);
         
     }
 }

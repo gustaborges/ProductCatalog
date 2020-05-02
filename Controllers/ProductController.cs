@@ -19,7 +19,7 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/products")]
         [HttpGet]
-        [ResponseCache(Duration=15)] // Por quinze minutos a response fica 'cacheada'
+        [ResponseCache(Duration=1200)] // Por 1200 segundos a resposta fica em 'cache'
         public IEnumerable<ListProductViewModel> GetProducts()
         {
             return _productRepository.Get();
@@ -34,7 +34,7 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/products")]
         [HttpPost]
-        public ResultViewModel Post([FromBody]EditorProductViewModel model)
+        public ResultViewModel Post([FromBody]EditorProductViewModel model, [FromServices]ICategoryRepository categoryRepository)
         {
             model.Validate();
 
@@ -47,6 +47,18 @@ namespace ProductCatalog.Controllers
                     Data = model
                 };
             }            
+
+            if (categoryRepository.NotExists(model.CategoryId))
+            {
+                model.AddNotification("CategoryId", "Categoria não encontrada");
+
+                return new ResultViewModel()
+                {
+                    Success = false,
+                    Message = "Não foi possível cadastrar o produto",
+                    Data = model
+                };
+            }
 
             var product = new Product()
             {
@@ -111,24 +123,26 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/products")]
         [HttpDelete]
-        public ResultViewModel Delete([FromBody]Product product)
+        public ResultViewModel Delete([FromBody]EditorProductViewModel model)
         {
-            var deleted = _productRepository.Delete(ref product);
-
-            if(deleted)
+            var product = _productRepository.Get(model.Id);
+            
+            if(product is null)
             {
                 return new ResultViewModel()
                 {
-                    Success = true,
-                    Message = "Produto deletado com sucesso.",
-                    Data = product
+                    Success = false,
+                    Message = "Não foi possível deletar este item",
+                    Data = model
                 };
             }
 
+            _productRepository.Delete(product);
+
             return new ResultViewModel()
             {
-                Success = false,
-                Message = "Não foi possível deletar este item",
+                Success = true,
+                Message = "Produto deletado com sucesso.",
                 Data = product
             };
 

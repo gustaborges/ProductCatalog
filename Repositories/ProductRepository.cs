@@ -3,9 +3,10 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ProductCatalog.Data;
 using ProductCatalog.Models;
+using ProductCatalog.Repositories.Contracts;
 using ProductCatalog.ViewModels.ProductViewModels;
 
-namespace ProductCatalog.Repositories.Contracts
+namespace ProductCatalog.Repositories
 {
     public class ProductRepository : IProductRepository
     {
@@ -53,16 +54,10 @@ namespace ProductCatalog.Repositories.Contracts
         }
 
         
-        public bool Delete(ref Product product) 
+        public void Delete(Product product) 
         {
-            product = _context.Products.Find(product.Id);
-
-            if(product is null)
-                return false;
-            
             _context.Products.Remove(product);
             _context.SaveChanges();
-            return true;
-        }        
+        }
     }
 }
