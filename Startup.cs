@@ -23,9 +23,13 @@ namespace ProductCatalog
             services.AddResponseCompression();
             services.AddResponseCaching();
 
+            services.AddSwaggerGen(setup => {
+                setup.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "Gusta Store", Version="v1"});
+            });
+
         }
 
-         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -35,7 +39,13 @@ namespace ProductCatalog
             app.UseMvc();
 
             app.UseResponseCompression();
-            app.UseResponseCaching();    
+            app.UseResponseCaching();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(setup => 
+            {
+                setup.SwaggerEndpoint("/swagger/v1/swagger.json", "Gusta Store - v1");
+            });
         }
     }
 }
