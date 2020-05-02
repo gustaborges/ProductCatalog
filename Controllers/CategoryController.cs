@@ -16,21 +16,21 @@ namespace ProductCatalog.Controllers
             _context = context;
         }
 
-        [Route("/categories/{id}")]
+        [Route("v1/categories/{id}")]
         [HttpGet]
         public Category GetCategory(int id)
         {
             return _context.Categories.AsNoTracking().Where(x=> x.Id == id).FirstOrDefault();
         }
 
-        [Route("/categories/{id}/products")]
+        [Route("v1/categories/{id}/products")]
         [HttpGet]
         public IEnumerable<Product> GetProducts(int id)
         {
             return _context.Products.AsNoTracking().Where(x => x.CategoryId == id).ToList();
         }
 
-        [Route("/categories")]
+        [Route("v1/categories")]
         [HttpPost]
         public Category Post([FromBody]Category category)
         {
@@ -41,7 +41,7 @@ namespace ProductCatalog.Controllers
         }
 
         
-        [Route("/categories")]
+        [Route("v1/categories")]
         [HttpPut]
         public Category Put([FromBody]Category category)
         {
@@ -52,7 +52,7 @@ namespace ProductCatalog.Controllers
         }
 
         
-        [Route("/categories")]
+        [Route("v1/categories")]
         [HttpDelete]
         public Category Delete([FromBody]Category category)
         {

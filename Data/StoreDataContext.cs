@@ -11,7 +11,8 @@ namespace ProductCatalog.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database=pdtctl;");
+            //optionsBuilder.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database=pdtctl;");
+            optionsBuilder.UseSqlServer(@"Server=localhost,1433; Database=pdtctl; User Id=sa; Password=1Ths6*2hKQMa;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
