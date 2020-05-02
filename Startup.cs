@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductCatalog.Data;
+using ProductCatalog.Repositories;
 using ProductCatalog.Repositories.Contracts;
 
 namespace ProductCatalog
@@ -11,11 +12,17 @@ namespace ProductCatalog
     {
          public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(option => option.EnableEndpointRouting = false);
-            
+            services.AddMvc(option => option.EnableEndpointRouting = false);         
+
+
             // Um objeto por requisição
             services.AddScoped<StoreDataContext, StoreDataContext>();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+
+            services.AddResponseCompression();
+            services.AddResponseCaching();
+
         }
 
          public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -25,7 +32,10 @@ namespace ProductCatalog
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();            
+            app.UseMvc();
+
+            app.UseResponseCompression();
+            app.UseResponseCaching();    
         }
     }
 }

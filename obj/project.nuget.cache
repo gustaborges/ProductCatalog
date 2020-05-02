@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9wcQjBDZcyf2bDriatFXP/sqqQ/cKcZ0S7gPG19Py6/B1eCZCQyZjD30BvfuWMfOTTS4yHZg+imRkJF3141RDQ==",
+  "dgSpecHash": "6mytc2rZESFN1iRG2q7YwWNQYSSLJjjmYZpGctE5Ibhxyis3tCagCK+LR1SNt7O4zk8RkTxD2GuJUPyBuV5lMw==",
   "success": true,
   "projectFilePath": "/home/gustavo/GitHub/ProductCatalog/ProductCatalog.csproj",
   "expectedPackageFiles": [
@@ -43,6 +43,7 @@
     "/home/gustavo/.nuget/packages/microsoft.aspnetcore.razor.language/2.2.0/microsoft.aspnetcore.razor.language.2.2.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/microsoft.aspnetcore.razor.runtime/2.2.0/microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/microsoft.aspnetcore.responsecaching.abstractions/2.2.0/microsoft.aspnetcore.responsecaching.abstractions.2.2.0.nupkg.sha512",
+    "/home/gustavo/.nuget/packages/microsoft.aspnetcore.responsecompression/2.2.0/microsoft.aspnetcore.responsecompression.2.2.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/microsoft.aspnetcore.routing/2.2.0/microsoft.aspnetcore.routing.2.2.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/microsoft.aspnetcore.routing.abstractions/2.2.0/microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
     "/home/gustavo/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
