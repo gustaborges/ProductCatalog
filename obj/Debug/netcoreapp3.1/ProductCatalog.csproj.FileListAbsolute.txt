@@ -110,3 +110,4 @@ D:\gusta\GitHub\ProductCatalog\obj\Debug\netcoreapp3.1\ProductCatalog.csproj.Cop
 D:\gusta\GitHub\ProductCatalog\obj\Debug\netcoreapp3.1\ProductCatalog.dll
 D:\gusta\GitHub\ProductCatalog\obj\Debug\netcoreapp3.1\ProductCatalog.pdb
 D:\gusta\GitHub\ProductCatalog\obj\Debug\netcoreapp3.1\ProductCatalog.genruntimeconfig.cache
+D:\gusta\GitHub\ProductCatalog\bin\Debug\netcoreapp3.1\Flunt.dll

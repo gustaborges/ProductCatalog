@@ -55,6 +55,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.3, )"
+            },
+            "flunt": {
+              "target": "Package",
+              "version": "[1.0.5, )"
             }
           },
           "imports": [

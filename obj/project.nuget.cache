@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rmP+S4hZjUD5FTU2B811Eyf2UfcLheVebygBXJ5XXhcr6IixLjjfrpc/FF1dLavL9A7Abzdc4Q08raMypYKUZw==",
+  "dgSpecHash": "UvBZkZ53rtLLt2JlMualJkGWbiugSKA+m/pkrRJ+8uAWjY17ZVOWg/2ka3Tp5ihIPY0IaG8X++rJPTzf+jjcYw==",
   "success": true,
   "projectFilePath": "D:\\gusta\\GitHub\\ProductCatalog\\ProductCatalog.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\gusta\\.nuget\\packages\\flunt\\1.0.5\\flunt.1.0.5.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

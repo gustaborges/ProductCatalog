@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProductCatalog.Data;
+using ProductCatalog.Repositories.Contracts;
 
 namespace ProductCatalog
 {
@@ -19,6 +15,7 @@ namespace ProductCatalog
             
             // Um objeto por requisição
             services.AddScoped<StoreDataContext, StoreDataContext>();
+            services.AddTransient<IProductRepository, ProductRepository>();
         }
 
          public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

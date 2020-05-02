@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ProductCatalog.Data;
 using ProductCatalog.Models;
+using ProductCatalog.Repositories.Contracts;
 using ProductCatalog.ViewModels;
 using ProductCatalog.ViewModels.ProductViewModels;
 
@@ -12,42 +10,43 @@ namespace ProductCatalog.Controllers
 {
     public class ProductController
     {
-        private readonly StoreDataContext _context;
+        private readonly IProductRepository _productRepository;
 
-        public ProductController(StoreDataContext context)
+        public ProductController(IProductRepository repository)
         {
-            _context = context;
+            _productRepository = repository;
         }
 
         [Route("/products")]
         [HttpGet]
         public IEnumerable<ListProductViewModel> GetProducts()
         {
-            return _context.Products
-            .Include(x => x.Category)
-            .Select(x => new ListProductViewModel
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Price = x.Price,
-                Category = x.Category.Title,
-                CategoryId = x.CategoryId
-            })
-            .AsNoTracking()
-            .ToList();
+            return _productRepository.Get();
         }
 
         [Route("/products/{id}")]
         [HttpGet]
         public Product GetProduct(int id)
         {
-            return _context.Products.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
+            return _productRepository.Get(id);
         }
 
         [Route("/products")]
         [HttpPost]
         public ResultViewModel Post([FromBody]EditorProductViewModel model)
         {
+            model.Validate();
+
+            if (model.Invalid)
+            {
+                return new ResultViewModel()
+                {
+                    Success = false,
+                    Message = "Não foi possível cadastrar o produto",
+                    Data = model
+                };
+            }            
+
             var product = new Product()
             {
                 Title = model.Title,
@@ -61,8 +60,7 @@ namespace ProductCatalog.Controllers
                 LastUpdateDate = DateTime.Now
             };
 
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            _productRepository.Create(product);
 
             return new ResultViewModel()
             {
@@ -73,23 +71,33 @@ namespace ProductCatalog.Controllers
 
         }
 
-        
+
         [Route("/products")]
         [HttpPut]
         public ResultViewModel Put([FromBody]EditorProductViewModel model)
-        {  
-            var product = _context.Products.Find(model.Id);
+        {
+            model.Validate();
+
+            if (model.Invalid)
+                return new ResultViewModel() { Success = false, Message = "Não foi possível alterar o produto", Data = model };
+
+            var product = _productRepository.Get(model.Id);
+            
+            if(product is null)
+                return new ResultViewModel() { Success = false, Message = "Produto não encontrado", Data = model };
+
+
             product.Title = model.Title;
             product.Description = model.Description;
             product.Price = model.Price;
             product.Quantity = model.Quantity;
             product.Image = model.Image;
             product.CategoryId = model.CategoryId;
-
             product.LastUpdateDate = DateTime.Now;
 
-            _context.Entry<Product>(product).State = EntityState.Modified;
-            _context.SaveChanges();
+
+            _productRepository.Update(product);
+
 
             return new ResultViewModel()
             {
@@ -99,20 +107,30 @@ namespace ProductCatalog.Controllers
             };
         }
 
-        
+
         [Route("/products")]
         [HttpDelete]
         public ResultViewModel Delete([FromBody]Product product)
         {
-            _context.Products.Remove(product);
-            _context.SaveChanges();
+            var deleted = _productRepository.Delete(ref product);
+
+            if(deleted)
+            {
+                return new ResultViewModel()
+                {
+                    Success = true,
+                    Message = "Produto deletado com sucesso.",
+                    Data = product
+                };
+            }
 
             return new ResultViewModel()
             {
-                Success = true,
-                Message = "Produto deletado com sucesso.",
+                Success = false,
+                Message = "Não foi possível deletar este item",
                 Data = product
             };
+
         }
     }
 }
